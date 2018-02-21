@@ -14,7 +14,7 @@ app.use(bodyparser.urlencoded({
 }));
 
 app.use(bodyparser.json());
-mongoose.connect("mongodb://localhost:27017/");
+var connection=mongoose.createConnection("mongodb://localhost:27017/");
 
 app.post('/student',(req,res)=>{
 

@@ -1,11 +1,9 @@
 const mongoose=require("mongoose");
 const autoincrement=require("mongoose-auto-increment");
-mongoose.plugin(autoincrement.mongoosePlugin,{field: 'sid',step: 1});
-
+autoincrement.initialize(mongoose.connection);
 var studentSchema=new mongoose.Schema({
     sid:{
         type: Number,
-
     },
     sname: {
         type: String,
@@ -21,4 +19,5 @@ var studentSchema=new mongoose.Schema({
     }
 });
 var Student=mongoose.model('tblstudent',studentSchema);
+studentSchema.plugin(autoincrement.plugin,{model: 'Student',field: 'sid',startAt: 100,incrementBy:1});
 module.exports={Student};
